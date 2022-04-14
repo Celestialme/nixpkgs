@@ -19,10 +19,10 @@ rec {
   # Policy: use the highest stable version as the default (on our master).
   stable = if stdenv.hostPlatform.system == "x86_64-linux"
     then generic {
-      version = "510.60.02";
-      sha256_64bit = "sha256-qADfwFSQeP2Mbo5ngO+47uh4cuYFXH9fOGpHaM4H4AM=";
-      settingsSha256 = "sha256-Voa1JZ2qqJ1t+bfwKh/mssEi/hjzLTPwef2XG/gAC+0=";
-      persistencedSha256 = "sha256-THgK2GpRcttqSN2WxcuJu5My++Q+Y34jG8hm7daxhAQ=";
+      version = "510.54";
+      sha256_64bit = "TCDezK4/40et/Q5piaMG+QJP2t+DGtwejmCFVnUzUWE=";
+      settingsSha256 = "ZWz5UN6Pa69NlmerKu30G+X8WfGlAwnVerDrO7TRO6w=";
+      persistencedSha256 = "MgWrBjKXJeRqF+ouT72tTiLPtn+lsS/Cp3oS61AWV8Q=";
     }
     else legacy_390;
 
@@ -54,10 +54,10 @@ rec {
 
   # Last one supporting Kepler architecture
   legacy_470 = generic {
-      version = "470.103.01";
-      sha256_64bit = "VsIwn4nCE0Y7DEY2D3siddc3HTxyevP+3IjElu3Ih6U=";
-      settingsSha256 = "Roc2OFSNEnIGLVwP0D9f8vFTf5v3KkL99S0mZBWN7s0=";
-      persistencedSha256 = "AVI0j2bpfMCMBTKuQp+BoCewaXIW3Xt4NnV1fjAHOr0=";
+      version = "470.94";
+      sha256_64bit = "lYWqKTMOutm98izjyiusICbIWpoy8D18WfcUp3mFAOs=";
+      settingsSha256 = "blJNKuFu/Th/ceexkKhTH/eYk8miUlTT+ESrcIyJNn0=";
+      persistencedSha256 = "xnccQ/EgafwnReBlk5Y7iClAj4hwXyFq9gUmwqyEuwE=";
   };
 
   # Last one supporting x86
@@ -67,19 +67,17 @@ rec {
     sha256_64bit = "09qcdfn4j5jza3iw59wqwgq4a489qf7kx355yssrcahaw9g87lxz";
     settingsSha256 = "16qqw0jy31da65cdi17y3j2kcdhw09vra7g17bkcimaqnf70j0ni";
     persistencedSha256 = "1ad81y4qfpxrx0vqsk81a3h0bi1yg8hw5gi5y5d58p76vc8083i9";
-
-    broken = kernel.kernelAtLeast "5.17";
   };
 
   legacy_340 = generic {
     version = "340.108";
-    sha256_32bit = "1jkwa1phf0x4sgw8pvr9d6krmmr3wkgwyygrxhdazwyr2bbalci0";
-    sha256_64bit = "06xp6c0sa7v1b82gf0pq0i5p0vdhmm3v964v0ypw36y0nzqx8wf6";
+    sha256_32bit = "4a221941e7697c30de4e1136694b93ef7a3045bd4f75712f3047bf697c2da9c0";
+    sha256_64bit = "4a221941e7697c30de4e1136694b93ef7a3045bd4f75712f3047bf697c2da9c0";
     settingsSha256 = "0zm29jcf0mp1nykcravnzb5isypm8l8mg2gpsvwxipb7nk1ivy34";
     persistencedSha256 = "1ax4xn3nmxg1y6immq933cqzw6cj04x93saiasdc0kjlv0pvvnkn";
-    useGLVND = false;
-
-    broken = kernel.kernelAtLeast "5.5";
-    patches = [ ./vm_operations_struct-fault.patch ];
-  };
+    url="http://localhost/nvidia-340-516.run";
+ useGLVND = false;
+   # patches = [./0001_kernel_5.7.patch ./0002_kernel_5.8.patch ./0003_kernel_5.9.patch ./0004_kernel_5.10.patch ./0005_kernel_5.11.patch ./0006_kernel_5.14.patch ./0007_kernel_5.15.patch ./0008_kernel_5.16.patch  ./vm_operations_struct-fault.patch ];
+	  
+};
 }
