@@ -125,6 +125,9 @@ let
   };
 
   initialRamdisk = pkgs.makeInitrdNG {
+    name = "initrd-${kernel-name}";
+    inherit (config.boot.initrd) compressor compressorArgs prepend;
+
     contents = map (path: { object = path; symlink = ""; }) (subtractLists cfg.suppressedStorePaths cfg.storePaths)
       ++ mapAttrsToList (_: v: { object = v.source; symlink = v.target; }) (filterAttrs (_: v: v.enable) cfg.contents);
   };
@@ -398,7 +401,6 @@ in {
         "${cfg.package}/lib/systemd/systemd-shutdown"
         "${cfg.package}/lib/systemd/systemd-sulogin-shell"
         "${cfg.package}/lib/systemd/systemd-sysctl"
-        "${cfg.package}/lib/systemd/systemd-vconsole-setup"
 
         # additional systemd directories
         "${cfg.package}/lib/systemd/system-generators"
